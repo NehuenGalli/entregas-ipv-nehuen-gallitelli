@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://7y6fw45kqkfq"]
+
+[ext_resource type="Texture2D" uid="uid://d03jowuvdnnqr" path="res://assets/turret.png" id="1_nqrv3"]
+[ext_resource type="Script" uid="uid://bxjpimtu02hsh" path="res://entidades/turret.gd" id="2_k3fs5"]
+[ext_resource type="PackedScene" uid="uid://bx6y3oqxymgul" path="res://entidades/projectileTurret.tscn" id="3_6p43u"]
+
+[sub_resource type="GDScript" id="GDScript_6p43u"]
+script/source = "extends Marker2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Turret" type="Sprite2D" unique_id=1262780305]
+texture = ExtResource("1_nqrv3")
+script = ExtResource("2_k3fs5")
+projectile_scene = ExtResource("3_6p43u")
+
+[node name="FirePosition" type="Marker2D" parent="." unique_id=742126486]
+position = Vector2(0, -31)
+script = SubResource("GDScript_6p43u")
+
+[node name="Timer" type="Timer" parent="." unique_id=318190464]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

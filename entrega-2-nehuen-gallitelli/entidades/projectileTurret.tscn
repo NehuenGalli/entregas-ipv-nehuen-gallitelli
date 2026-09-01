@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bx6y3oqxymgul"]
+
+[ext_resource type="PackedScene" uid="uid://dudr0unf8wcxd" path="res://entidades/AbstractProjectile.tscn" id="1_sui0p"]
+[ext_resource type="Texture2D" uid="uid://317k3vxehvnr" path="res://assets/proyectile_turret.png" id="2_47kp5"]
+
+[node name="Projectile" unique_id=2085454838 instance=ExtResource("1_sui0p")]
+texture = ExtResource("2_47kp5")
+speed = 100.0
+
+[node name="Timer" parent="." index="0" unique_id=155828817]
+wait_time = 5.0
