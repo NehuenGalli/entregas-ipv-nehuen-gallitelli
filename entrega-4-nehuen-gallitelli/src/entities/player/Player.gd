@@ -29,6 +29,7 @@ var dead: bool = false
 
 func _ready() -> void:
 	initialize()
+	body_animations.animation_finished.connect(_on_animation_finished)
 
 
 func initialize(projectile_container: Node = get_parent()) -> void:
@@ -54,7 +55,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, FRICTION_WEIGHT * delta) if abs(velocity.x) > 1 else 0
 	
-	if !is_on_floor():
+	if dead:
+		_play_animation("die")
+	elif !is_on_floor():
 		_play_animation("jump")
 	elif h_movement_direction != 0:
 		_play_animation("walk")
@@ -112,14 +115,25 @@ func _process_input() -> void:
 
 
 func notify_hit() -> void:
+	if dead:
+		return
 	print("I'm player and imma die")
-	_remove.call_deferred()
+	dead = true
+	collision_layer = 0
+	weapon.hide()
+	_play_animation("die")
+
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &"die":
+		_remove.call_deferred()
 
 
 func _remove() -> void:
 	set_physics_process(false)
 	hide()
 	collision_layer = 0
+	collision_mask = 0
 
 
 ## Wrapper sobre el llamado a animación para tener un solo punto de entrada controlable

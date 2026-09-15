@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cpflpvswcorkq"]
+
+[ext_resource type="Script" uid="uid://coqxktsvv203r" path="res://src/Main.gd" id="1"]
+[ext_resource type="Script" uid="uid://25xetcj5a1il" path="res://src/entities/enemies/TurretsSpawner.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://ctr8khlrbhmg7" path="res://assets/textures/background/Space Background.png" id="2_0vhqb"]
+[ext_resource type="PackedScene" path="res://src/environment/Floor.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bd5hj26cc16d2" path="res://src/entities/enemies/Turret.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dvchiotj4dluu" path="res://src/environment/Obstacle.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bg6s38wn8ss5x" path="res://src/entities/player/Player.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://src/environment/Wall.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://src/environment/Goal.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://src/environment/Ramp.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://src/environment/Platform.tscn" id="11"]
+
+[node name="Main" type="Node" unique_id=1074882724]
+script = ExtResource("1")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1896740321]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2137931408]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=351316516]
+texture = ExtResource("2_0vhqb")
+centered = false
+
+[node name="Environment" type="Node2D" parent="." unique_id=65552350]
+position = Vector2(-1, -17)
+
+[node name="Ground" type="Node2D" parent="Environment" unique_id=1013288675]
+
+[node name="Floor" parent="Environment/Ground" unique_id=438267920 instance=ExtResource("4")]
+position = Vector2(1424.51, 189.62201)
+
+[node name="Floor2" parent="Environment/Ground" unique_id=1625296942 instance=ExtResource("4")]
+position = Vector2(768.506, 189.62201)
+
+[node name="Floor3" parent="Environment/Ground" unique_id=1497037542 instance=ExtResource("4")]
+position = Vector2(112.50599, 189.62201)
+
+[node name="Wall" parent="Environment/Ground" unique_id=1964736329 instance=ExtResource("8")]
+position = Vector2(31.8359, -77.048004)
+
+[node name="Ramp" parent="Environment/Ground" unique_id=1303860967 instance=ExtResource("10")]
+position = Vector2(1396.44, 160.07)
+
+[node name="Ramp2" parent="Environment/Ground" unique_id=1502831138 instance=ExtResource("10")]
+position = Vector2(270.656, 158.143)
+rotation = 0.690548
+
+[node name="Ramp3" parent="Environment/Ground" unique_id=953974628 instance=ExtResource("10")]
+position = Vector2(612.657, 242.00098)
+rotation = -0.601429
+
+[node name="Platform" parent="Environment/Ground" unique_id=1317413807 instance=ExtResource("11")]
+position = Vector2(1472.51, -154.37799)
+
+[node name="Platform2" parent="Environment/Ground" unique_id=636181536 instance=ExtResource("11")]
+position = Vector2(1728.51, -114.37799)
+
+[node name="Platform3" parent="Environment/Ground" unique_id=24489644 instance=ExtResource("11")]
+position = Vector2(1584.51, 37.62201)
+
+[node name="Platform4" parent="Environment/Ground" unique_id=909993881 instance=ExtResource("11")]
+position = Vector2(449.581, 108.16)
+
+[node name="Platform5" parent="Environment/Ground" unique_id=746102291 instance=ExtResource("11")]
+position = Vector2(545.103, 108.10599)
+
+[node name="Entities" type="Node2D" parent="Environment" unique_id=1534244929]
+position = Vector2(41, 8)
+
+[node name="Player" parent="Environment/Entities" unique_id=750101349 instance=ExtResource("7")]
+position = Vector2(89, 148)
+ACCELERATION = 400.0
+H_SPEED_LIMIT = 500.0
+
+[node name="TurretsSpawner" type="Marker2D" parent="Environment/Entities" unique_id=1697930035]
+position = Vector2(1275, -268)
+script = ExtResource("2")
+turret_scene = ExtResource("5")
+amount = 3
+extents = Vector2(300, -350)
+
+[node name="Turret" parent="Environment/Entities" unique_id=100785904 instance=ExtResource("5")]
+position = Vector2(1608.14, 121.862)
+
+[node name="Objects" type="Node2D" parent="Environment" unique_id=2062717032]
+
+[node name="Obstacles" type="Node2D" parent="Environment/Objects" unique_id=1492517733]
+
+[node name="Obstacle" parent="Environment/Objects/Obstacles" unique_id=1586395672 instance=ExtResource("6")]
+position = Vector2(1496.68, -189.581)
+
+[node name="Obstacle2" parent="Environment/Objects/Obstacles" unique_id=1906115289 instance=ExtResource("6")]
+position = Vector2(485.68698, 66.79199)
+
+[node name="Obstacle3" parent="Environment/Objects/Obstacles" unique_id=209358561 instance=ExtResource("6")]
+position = Vector2(485.26596, 23.065002)
+mass = 20.0
+
+[node name="Obstacle4" parent="Environment/Objects/Obstacles" unique_id=1969374579 instance=ExtResource("6")]
+position = Vector2(515.538, 66.371)
+
+[node name="Obstacle5" parent="Environment/Objects/Obstacles" unique_id=2018165993 instance=ExtResource("6")]
+position = Vector2(516.379, 22.223999)
+
+[node name="Goal" parent="Environment/Objects" unique_id=1077990316 instance=ExtResource("9")]
+position = Vector2(1464.51, -370.37842)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=653200858]
+position = Vector2(0, -16)

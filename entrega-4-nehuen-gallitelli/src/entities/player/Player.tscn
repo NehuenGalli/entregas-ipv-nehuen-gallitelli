@@ -77,9 +77,27 @@ tracks/0/keys = {
 "values": [9, 9, 10, 11, 12, 13, 14, 15, 16]
 }
 
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 29, 30, 31, 32, 33, 34, 35]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j0f6w"]
 _data = {
 &"RESET": SubResource("Animation_lvau8"),
+&"die": SubResource("Animation_die"),
 &"idle": SubResource("Animation_gc66i"),
 &"jump": SubResource("Animation_j0f6w"),
 &"walk": SubResource("Animation_3g2ip")
@@ -126,3 +144,7 @@ texture = ExtResource("5_lvau8")
 
 [node name="WeaponTip" type="Marker2D" parent="WeaponContainer/Weapon" unique_id=188895126]
 position = Vector2(12, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1694966841]
+position = Vector2(0, -7)
+zoom = Vector2(0.7, 0.7)

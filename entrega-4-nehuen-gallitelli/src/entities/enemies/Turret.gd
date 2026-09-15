@@ -17,6 +17,7 @@ var dead: bool = false
 func _ready() -> void:
 	fire_timer.timeout.connect(fire)
 	set_physics_process(false)
+	body_anim.animation_finished.connect(_on_animation_finished)
 	_play_animation("idle")
 
 
@@ -26,7 +27,7 @@ func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 
 
 func fire() -> void:
-	if target == null:
+	if target == null or dead:
 		return
 	
 	var proj_instance: Node = projectile_scene.instantiate()
@@ -41,6 +42,8 @@ func fire() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if dead or target == null:
+		return
 	raycast.set_target_position(raycast.to_local(target.global_position))
 	if raycast.is_colliding() && raycast.get_collider() == target:
 		if fire_timer.is_stopped():
@@ -52,9 +55,17 @@ func _physics_process(delta: float) -> void:
 ## Esta función ya no llama directamente a remove, sino que inhabilita las
 ## colisiones con el mundo, pausa todo lo demás y ejecuta una animación de muerte
 func notify_hit() -> void:
+	if dead:
+		return
 	print("I'm turret and imma die")
 	dead = true
-	_remove.call_deferred()
+	set_physics_process(false)
+	fire_timer.stop()
+	collision_layer = 0
+	collision_mask = 0
+	$DetectionArea.monitoring = false
+	$DetectionArea.monitorable = false
+	_play_animation("die")
 
 
 func _remove() -> void:
@@ -66,6 +77,8 @@ func _remove() -> void:
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	if dead:
+		return
 	if target == null:
 		target = body
 		set_physics_process(true)
@@ -80,7 +93,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 ## Acá manejamos el callback de "animation finished" y procesamos qué
 ## lógica ejecutar a continuación, estilo grafo.
 func _on_animation_finished() -> void:
-	pass
+	if body_anim.animation == &"die":
+		_remove.call_deferred()
 
 
 ## Wrapper sobre el llamado a animación para tener un solo punto de entrada controlable
