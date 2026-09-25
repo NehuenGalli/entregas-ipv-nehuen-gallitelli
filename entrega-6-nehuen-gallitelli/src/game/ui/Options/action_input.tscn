@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dyb501xjxxews"]
+
+[ext_resource type="Script" uid="uid://filq8hfhir2d" path="res://src/game/ui/Options/action_input.gd" id="1_pc6pl"]
+[ext_resource type="FontFile" path="res://assets/fonts/Default-Medium.tres" id="2_font"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xif3j"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.29803923, 0.6392157, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a1cm"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.29803923, 0.6392157, 0.62352943)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkec7"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0.29803923, 0.6392157, 0.4392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkluq"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a078r"]
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 5.0
+content_margin_bottom = 3.0
+bg_color = Color(0.5882353, 0.6392157, 0, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
+
+[node name="ActionInput" type="PanelContainer" unique_id=193845242]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
+script = ExtResource("1_pc6pl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1232441954]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Input" type="Button" parent="HBoxContainer" unique_id=1789735753]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xif3j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_xif3j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5a1cm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5a1cm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkec7")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_tkec7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tkec7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_tkec7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tkluq")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tkluq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a078r")
+
+[node name="Action" type="Label" parent="HBoxContainer" unique_id=587020766]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "Move Left"
+vertical_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/Input" to="." method="_on_input_pressed"]

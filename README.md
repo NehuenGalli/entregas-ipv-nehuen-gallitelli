@@ -6,3 +6,4 @@
 - **Entrega desafio 3:** [Demo online](https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-3/) (`https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-3/`)
 - **Entrega desafio 4:** [Demo online](https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-4/) (`https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-4/`)
 - **Entrega desafio 5:** [Demo online](https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-5/) (`https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-5/`) *(Bonus de Dash incluido - se activa con la tecla Ctrl)*
+- **Entrega desafio 6:** [Demo online](https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-6/) (`https://nehuengalli.github.io/entregas-demos-ipv-nehuen-galliteli/entrega-6/`)
